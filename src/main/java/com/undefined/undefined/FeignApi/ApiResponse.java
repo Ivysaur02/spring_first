@@ -4,9 +4,9 @@ import java.util.Map;
 public class ApiResponse {
     private String disclaimer;
     private String license;
-    private long timestamp; //TODO пределать в настоящим тампстамп
+    private long timestamp; // TODO переделать в настоящий тампстамп
     private String base;
-    private Map<String, Double> rates; //катировки представляются в виду мапа
+    private Map<String, Double> rates; // Котировки представляются в виде мапа
 
     // Конструкторы, геттеры и сеттеры
 

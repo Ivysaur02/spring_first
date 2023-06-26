@@ -6,11 +6,11 @@ import feign.RequestLine;
 
 public interface ApiClient {
 
-    @RequestLine("GET /api/historical/{date}.json?app_id={appId}&base={base}&symbols={symbols}") //выполнить гет запрос по url
-    @Headers("Content-Type: application/json") //тип который приходит в ответе
+    @RequestLine("GET /api/historical/{date}.json?app_id={appId}&base={base}&symbols={symbols}") // GET запрос по URL
+    @Headers("Content-Type: application/json") // Тип, который мы ожидаем получить в ответе
     ApiResponse getExchangeRates(
-            @Param("date") String date, //в url вместо {date} подставить стрингу даты
-            @Param("appId") String appId, //id чтобы послать запрос через сервис
+            @Param("date") String date, // В url вместо {date} подставить string даты
+            @Param("appId") String appId, // Id для того, чтобы послать запрос к сервису
             @Param("base") String base,
             @Param("symbols") String symbols
     );
