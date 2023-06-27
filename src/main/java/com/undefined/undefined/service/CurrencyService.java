@@ -1,7 +1,7 @@
 package com.undefined.undefined.service;
 
-import com.undefined.undefined.feign.ApiClientCurrency;
-import com.undefined.undefined.feign.dto.ApiResponseCurrency;
+import com.undefined.undefined.feign.FeignClientRequestCurrency;
+import com.undefined.undefined.feign.dto.DTOResponseCurrency;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import lombok.AllArgsConstructor;
@@ -17,13 +17,13 @@ public class CurrencyService {
     private final String base = "USD"; // Изначальная ВАЛЮТА для котировки
     private final String symbols = "AUD,GBP,EUR,RUB"; // Курс
 
-    private final ApiClientCurrency apiClientCurrency = Feign.builder()
+    private final FeignClientRequestCurrency feignClientRequestCurrency = Feign.builder()
             .decoder(new GsonDecoder()) // JSON декодер, чтобы работать с JSON
-            .target(ApiClientCurrency.class, "https://openexchangerates.org");
+            .target(FeignClientRequestCurrency.class, "https://openexchangerates.org");
 
-    public ApiResponseCurrency getQuotation() {
+    public DTOResponseCurrency getQuotation() {
         try {
-            return apiClientCurrency.getExchangeRates(date, appId, base, symbols);
+            return feignClientRequestCurrency.getExchangeRates(date, appId, base, symbols);
         } catch (Exception e) {
             log.debug("Catch smth");
             throw new RuntimeException("Kek");

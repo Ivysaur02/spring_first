@@ -1,6 +1,6 @@
 package com.undefined.undefined.feign;
 
-import com.undefined.undefined.feign.dto.ApiResponseGiphy;
+import com.undefined.undefined.feign.dto.DTOResponseGiphy;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
@@ -12,11 +12,11 @@ import org.springframework.cloud.openfeign.FeignClientsConfiguration;
         value = "giphy-feign",
         path = "v1",
         configuration = FeignClientsConfiguration.class)
-public interface ApiClientGiphy {
+public interface FeignClientRequestGiphy {
     @RequestLine("GET /gifs/search?api_key={apiKey}&limit=50&q={giphyType}")
     @Headers("Content-Type: application/json")
         // Тип, который мы ожидаем получить в ответе
-    ApiResponseGiphy getGiphy(
+    DTOResponseGiphy getGiphy(
             @Param("apiKey") String apiKey, // В url вместо {date} подставить string даты
             @Param("giphyType") String giphyType
     );
