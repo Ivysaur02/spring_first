@@ -11,5 +11,9 @@ public class DTOResponseCurrency {
     private String base;
     private Map<String, Double> rates; // Котировки представляются в виде мапа
 
+    @Override
+    public String toString(){
+        return disclaimer+ " "+license+" "+ timestamp+" "+ base;
+    }
 }
 
