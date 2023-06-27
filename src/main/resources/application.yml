@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/undefined
+    username: postgres
+    password: 123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 30000
+            readTimeout: 30000
+            loggerLevel: FULL
+
+url:
+  giphy: https://api.giphy.com
+  exchange-rates: https://openexchangerates.org
+
+exchange-rates:
+  app-id: "62702b9e6068461fbf4a38ae88b88547"
+  base: "USD"
+  symbols: "AUD,GBP,EUR,RUB"
