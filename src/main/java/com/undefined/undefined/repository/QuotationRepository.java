@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuotationRepository extends CrudRepository<Quotation, Integer> {
+public interface QuotationRepository extends JpaRepository<Quotation, Integer> {
     List<Quotation> findByBase(String base);
 
     @Override
