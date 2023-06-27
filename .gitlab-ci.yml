@@ -1,0 +1,54 @@
+image: maven:latest
+
+services:
+  - name: docker:dind
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: "overlay2"
+
+stages:
+  - build_and_test
+  - package
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository
+Build project:
+  stage: build_and_test
+  script:
+    - mvn $MAVEN_OPTS compile
+
+Test project:
+  stage: build_and_test
+  script:
+    - mvn $MAVEN_OPTS test
+  artifacts:
+    paths:
+      - "**/target/*.jar"
+    reports:
+      junit:
+        - "**/target/surefire-reports/TEST-*.xml"
+
+Package project:
+  stage: package
+  script:
+    - ./mvnw $MAVEN_OPTS package
+  artifacts:
+    paths:
+      - "**/target/*.jar"
+    expire_in: 1 day
+
+Deploy to heroku:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+  only:
+    - master
