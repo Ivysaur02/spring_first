@@ -48,5 +48,6 @@ public class UndefinedApplication {
 
         // Создание экземпляра сущности
         quotationService.createQuotation();
+        quotationService.createQuotation("EUR", "RUB", 3.22f);
     }
 }

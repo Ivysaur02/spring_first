@@ -28,4 +28,16 @@ public class QuotationService {
         quotationRepository.save(quotation);
     }
 
+    public void createQuotation(String base, String rate, Float value) {
+        // Создание нового кортежа
+        Quotation quotation = new Quotation();
+        quotation.setBase(base);
+        quotation.setRate(rate);
+        quotation.setValue(value);
+        quotation.setDate(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
+
+        // Сохранение кортежа в базе данных
+        quotationRepository.save(quotation);
+    }
+
 }
