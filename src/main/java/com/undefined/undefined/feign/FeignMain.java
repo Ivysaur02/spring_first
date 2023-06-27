@@ -1,5 +1,7 @@
-package com.undefined.undefined.FeignApi;
+package com.undefined.undefined.feign;
 
+import com.undefined.undefined.feign.dto.ApiResponseCurrency;
+import com.undefined.undefined.feign.dto.ApiResponseGiphy;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 

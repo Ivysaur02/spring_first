@@ -1,4 +1,4 @@
-package com.undefined.undefined.FeignApi;
+package com.undefined.undefined.feign.dto;
 import java.util.Map;
 
 public class ApiResponseCurrency {

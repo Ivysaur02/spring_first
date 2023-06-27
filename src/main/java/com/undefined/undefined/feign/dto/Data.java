@@ -1,7 +1,4 @@
-package com.undefined.undefined.FeignApi;
-
-import java.util.List;
-import java.util.Map;
+package com.undefined.undefined.feign.dto;
 
 public class Data {
     private String url;
