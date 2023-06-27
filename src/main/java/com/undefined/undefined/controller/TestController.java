@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class Test {
+//TODO Remove later
+public class TestController {
     private final CurrencyService currencyService;
 
     @GetMapping("/test")
