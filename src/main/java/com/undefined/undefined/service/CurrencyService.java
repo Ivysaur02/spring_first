@@ -2,6 +2,8 @@ package com.undefined.undefined.service;
 
 import com.undefined.undefined.feign.ApiClientCurrency;
 import com.undefined.undefined.feign.dto.ApiResponseCurrency;
+import feign.Feign;
+import feign.gson.GsonDecoder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ public class CurrencyService {
     private final String base = "USD"; // Изначальная ВАЛЮТА для котировки
     private final String symbols = "AUD,GBP,EUR,RUB"; // Курс
 
-    private final ApiClientCurrency apiClientCurrency;
+    private final ApiClientCurrency apiClientCurrency = Feign.builder()
+            .decoder(new GsonDecoder()) // JSON декодер, чтобы работать с JSON
+            .target(ApiClientCurrency.class, "https://openexchangerates.org");
 
     public ApiResponseCurrency getQuotation() {
         try {
