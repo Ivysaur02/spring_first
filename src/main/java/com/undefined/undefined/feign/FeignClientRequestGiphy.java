@@ -1,23 +1,27 @@
 package com.undefined.undefined.feign;
 
+import com.undefined.undefined.config.FeignConfig;
 import com.undefined.undefined.feign.dto.DTOResponseGiphy;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(url = "${url.giphy}",
-        value = "giphy-feign",
-        path = "v1",
-        configuration = FeignClientsConfiguration.class)
+@FeignClient(
+    name = "giphy-service",
+    url = "${url.giphy}",
+    path = "v1",
+    primary = false,
+    configuration = FeignConfig.class)
 public interface FeignClientRequestGiphy {
-    @RequestLine("GET /gifs/search?api_key={apiKey}&limit=50&q={giphyType}")
-    @Headers("Content-Type: application/json")
+    @GetMapping("/gifs/search?api_key={api_key}&limit=50&q={giphyType}")
         // Тип, который мы ожидаем получить в ответе
     DTOResponseGiphy getGiphy(
-            @Param("apiKey") String apiKey, // В url вместо {date} подставить string даты
-            @Param("giphyType") String giphyType
+        @PathVariable("api_key") String apiKey, // В url вместо {date} подставить string даты
+        @PathVariable("giphyType") String giphyType
     );
 }
