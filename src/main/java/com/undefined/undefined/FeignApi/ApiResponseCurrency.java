@@ -1,7 +1,7 @@
 package com.undefined.undefined.FeignApi;
 import java.util.Map;
 
-public class ApiResponse {
+public class ApiResponseCurrency {
     private String disclaimer;
     private String license;
     private long timestamp; // TODO переделать в настоящий тампстамп
