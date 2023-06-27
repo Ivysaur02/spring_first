@@ -1,20 +1,24 @@
 package com.undefined.undefined.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
+
 @Getter
 @Setter
-public class Quotation {
-    @Id
-    private UUID id;
 
-    private LocalDate creationDate;
-    private String text;
+@Entity
+@Table(name = "Quotation")
+public class Quotation {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+    private String base;
+    private String rate;
+    private float value;
 }

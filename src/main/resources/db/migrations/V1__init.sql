@@ -1,0 +1,6 @@
+CREATE TABLE Quotation (
+  id SERIAL PRIMARY KEY,
+  base VARCHAR(10) NOT NULL,
+  rate VARCHAR(10) NOT NULL,
+  value NUMERIC(10,2) NOT NULL
+);
