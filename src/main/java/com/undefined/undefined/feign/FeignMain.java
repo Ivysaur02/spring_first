@@ -41,7 +41,7 @@ public class FeignMain {
 
         Random random = new Random();
         int randomIndex = random.nextInt(50);
-        System.out.println("giphy url: " + responseGiphy.getData().get(randomIndex).getUrl());
+        System.out.println("giphy url: " + responseGiphy.getData().get(randomIndex));
 
     }
 }
