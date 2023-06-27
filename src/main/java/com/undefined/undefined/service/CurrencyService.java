@@ -2,35 +2,36 @@ package com.undefined.undefined.service;
 
 import com.undefined.undefined.feign.FeignClientRequestCurrency;
 import com.undefined.undefined.feign.dto.DTOResponseCurrency;
-import feign.Feign;
-import feign.gson.GsonDecoder;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class CurrencyService {
-    private final String DefaultDate = "2023-06-25";
-    private final String appId = "62702b9e6068461fbf4a38ae88b88547"; // Код Даниила (НЕ ТРОГАТЬ)
-    private final String base = "USD"; // Изначальная ВАЛЮТА для котировки
-    private final String symbols = "RUB"; // Курс
 
-    private final FeignClientRequestCurrency feignClientRequestCurrency = Feign.builder()
-            .decoder(new GsonDecoder()) // JSON декодер, чтобы работать с JSON
-            .target(FeignClientRequestCurrency.class, "https://openexchangerates.org");
+    private final String DEFAULT_DATE = "2023-06-25";
+    @Value("${exchange-rates.app-id}")
+    private String appId;
+    @Value("${exchange-rates.base}")
+    private String base;
+    @Value("${exchange-rates.symbols}")
+    private String symbols;
 
-    public DTOResponseCurrency getQuotation() {
+    private final FeignClientRequestCurrency feignClientRequestCurrency;
+
+    public DTOResponseCurrency getExchangeRate() {
         try {
-            return feignClientRequestCurrency.getExchangeRates(DefaultDate, appId, base, symbols);
+            return feignClientRequestCurrency.getExchangeRates(DEFAULT_DATE, appId, base, symbols);
         } catch (Exception e) {
             log.debug("Catch smth");
             throw new RuntimeException("Kek");
         }
     }
 
-    public DTOResponseCurrency getQuotation(String date) {
+    public DTOResponseCurrency getExchangeRate(String date) {
         try {
             return feignClientRequestCurrency.getExchangeRates(date, appId, base, symbols);
         } catch (Exception e) {
