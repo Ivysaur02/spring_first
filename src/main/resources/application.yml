@@ -28,3 +28,7 @@ exchange-rates:
   app-id: "62702b9e6068461fbf4a38ae88b88547"
   base: "USD"
   symbols: "AUD,GBP,EUR,RUB"
+
+giphy:
+  app-key: "AOk1bWf4UKBCe59mkHeHLNhweaQWNJiw"
+
