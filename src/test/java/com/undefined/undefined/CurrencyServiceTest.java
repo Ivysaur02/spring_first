@@ -33,10 +33,12 @@ public class CurrencyServiceTest extends AbstractTest{
         dtoResponseCurrency.setBase("USD");
 
         Map<String, Float> rates = new HashMap<>();
-        rates.put("AUD", 1.510665F);
-        rates.put("EUR", 0.917129F);
-        rates.put("GBP", 0.79145F);
-        rates.put("RUB", 86.425011F);
+        rates.put("AUD", 1.496505F);
+        rates.put("EUR", 0.912613F);
+        rates.put("GBP", 0.784586F);
+        rates.put("RUB", 85.37501F);
+
+
 
         dtoResponseCurrency.setRates(rates);
     }
@@ -44,7 +46,7 @@ public class CurrencyServiceTest extends AbstractTest{
 
     @Test
     void CheckSameDay(){
-        DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-28");
+        DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-27");
         assertEquals(receivedResponse, dtoResponseCurrency);
     }
 
