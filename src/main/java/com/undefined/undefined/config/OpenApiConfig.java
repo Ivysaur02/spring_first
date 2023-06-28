@@ -16,7 +16,6 @@ public class OpenApiConfig {
             .components(new Components())
             .info(info());
     }
-
     private Info info() {
         return new Info()
             .title("Летняя Практика")

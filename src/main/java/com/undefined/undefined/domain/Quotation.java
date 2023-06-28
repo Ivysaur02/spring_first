@@ -3,7 +3,6 @@ package com.undefined.undefined.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.sql.Timestamp;
 
 @Getter
@@ -11,7 +10,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "Quotation")
 public class Quotation {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,6 +17,5 @@ public class Quotation {
     private String rate;
     @Column(columnDefinition = "numeric")
     private Float value;
-
     private Timestamp date;
 }

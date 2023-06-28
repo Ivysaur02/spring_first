@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
     name = "currency-service",
     configuration = FeignConfig.class)
 public interface FeignClientRequestCurrency {
-
     @GetMapping("/api/historical/{date}.json?app_id={appId}&base={base}&symbols={symbols}")
         // GET запрос по URL
         // Тип, который мы ожидаем получить в ответе

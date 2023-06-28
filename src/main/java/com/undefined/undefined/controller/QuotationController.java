@@ -2,9 +2,6 @@ package com.undefined.undefined.controller;
 
 import com.undefined.undefined.abstraction.api.QuotationApi;
 import com.undefined.undefined.service.AppService;
-import com.undefined.undefined.service.CurrencyService;
-import com.undefined.undefined.service.GiphyService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class QuotationController implements QuotationApi {
     private final AppService appService;
-
     @Override
     public ResponseEntity<String> quotation() {
         return ResponseEntity.ok(appService.getResult());
