@@ -7,12 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class CurrencyService {
 
-    private final String DEFAULT_DATE = "2023-06-25";
+    private final String DEFAULT_DATE = LocalDate.now().toString();
     @Value("${exchange-rates.app-id}")
     private String appId;
     @Value("${exchange-rates.base}")

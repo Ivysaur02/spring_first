@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
@@ -28,13 +29,13 @@ public class QuotationService {
         quotationRepository.save(quotation);
     }
 
-    public void createQuotation(String base, String rate, Float value) {
+    public void createQuotation(String base, String rate, Float value, Timestamp date) {
         // Создание нового кортежа
         Quotation quotation = new Quotation();
         quotation.setBase(base);
         quotation.setRate(rate);
         quotation.setValue(value);
-        quotation.setDate(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
+        quotation.setDate(date);
 
         // Сохранение кортежа в базе данных
         quotationRepository.save(quotation);

@@ -13,7 +13,7 @@ public class DTOResponseCurrency {
     // Необязательно
     private long timestamp; // TODO переделать ли в норм дату???
     private String base;
-    private Map<String, Double> rates; // Котировки представляются в виде мапа
+    private Map<String, Float> rates; // Котировки представляются в виде мапа
 
     @Override
     public String toString() {
