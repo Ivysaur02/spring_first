@@ -1,4 +1,4 @@
-package servicetest;
+package com.undefined.undefined;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

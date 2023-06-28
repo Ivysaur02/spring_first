@@ -1,4 +1,4 @@
-package servicetest;
+package com.undefined.undefined;
 
 import com.undefined.undefined.feign.dto.DTOResponseCurrency;
 import com.undefined.undefined.service.CurrencyService;
@@ -15,18 +15,20 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //неправильных класс конфигурации
-@SpringBootTest(classes = GiphyService.class)
+@SpringBootTest
 public class CurrencyServiceTest extends AbstractTest{
 
     @Autowired
     private CurrencyService currencyService;
 
-    DTOResponseCurrency dtoResponseCurrency;
+    static DTOResponseCurrency dtoResponseCurrency;
 
-    @Before
-    void init(){
+    @BeforeAll
+    public static void init(){
         dtoResponseCurrency = new DTOResponseCurrency();
-        dtoResponseCurrency.setDisclaimer("Usage subject to terms: https://openexchangerates.org/terms");
+
+        ///Usage subject to terms: https://openexchangerates.org/terms
+        dtoResponseCurrency.setDisclaimer("123");
         dtoResponseCurrency.setLicense("https://openexchangerates.org/license");
         dtoResponseCurrency.setTimestamp(1687968000L);
         dtoResponseCurrency.setBase("USD");
