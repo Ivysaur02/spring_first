@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -16,19 +17,6 @@ import java.time.LocalDate;
 public class QuotationService {
     @Autowired
     private QuotationRepository quotationRepository;
-
-    public void createQuotation() {
-        // Создание нового кортежа
-        Quotation quotation = new Quotation();
-        quotation.setBase("Игорь");
-        quotation.setRate("EUR");
-        quotation.setValue(5.23f);
-        quotation.setDate(Timestamp.valueOf(LocalDate.now().atStartOfDay()));
-
-        // Сохранение кортежа в базе данных
-        quotationRepository.save(quotation);
-    }
-
     public void createQuotation(String base, String rate, Float value, Timestamp date) {
         // Создание нового кортежа
         Quotation quotation = new Quotation();
