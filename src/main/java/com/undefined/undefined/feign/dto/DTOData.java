@@ -12,6 +12,15 @@ public class DTOData {
     public String toString(){
         return "{giphy: " + url + "}\n";
     }
+
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == this) return true;
+        if (!(obj instanceof DTOData)) return false;
+        DTOData oth = (DTOData) obj;
+        return oth.typeUrl.equals(typeUrl);
+    }
 }
 
 

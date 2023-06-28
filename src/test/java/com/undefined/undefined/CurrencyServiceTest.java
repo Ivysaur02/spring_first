@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-//неправильных класс конфигурации
 @SpringBootTest
 public class CurrencyServiceTest extends AbstractTest{
 
@@ -27,8 +27,7 @@ public class CurrencyServiceTest extends AbstractTest{
     public static void init(){
         dtoResponseCurrency = new DTOResponseCurrency();
 
-        ///Usage subject to terms: https://openexchangerates.org/terms
-        dtoResponseCurrency.setDisclaimer("123");
+        dtoResponseCurrency.setDisclaimer("Usage subject to terms: https://openexchangerates.org/terms");
         dtoResponseCurrency.setLicense("https://openexchangerates.org/license");
         dtoResponseCurrency.setTimestamp(1687968000L);
         dtoResponseCurrency.setBase("USD");
@@ -44,8 +43,14 @@ public class CurrencyServiceTest extends AbstractTest{
 
 
     @Test
-    void CheckEqualsDay(){
+    void CheckSameDay(){
         DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-28");
         assertEquals(receivedResponse, dtoResponseCurrency);
+    }
+
+    @Test
+    void CheckNotEqualsDay(){
+        DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-20");
+        assertNotEquals(receivedResponse, dtoResponseCurrency);
     }
 }
