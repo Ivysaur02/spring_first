@@ -19,5 +19,13 @@ public class DTOResponseCurrency {
             "base: " + base + ", " +
             "rates: " + rates.toString() + "}\n";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof DTOResponseCurrency)) return false;
+        DTOResponseCurrency other = (DTOResponseCurrency) obj;
+        return (other.base.equals(base) && other.rates.equals(rates));
+    }
 }
 
