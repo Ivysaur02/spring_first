@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class DTOData {
     private String url; // TODO Сейчас тут url, но это надо переделать (не менять саму String giphy)
+    private String typeUrl;
 
     @Override
     public String toString(){

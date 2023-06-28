@@ -31,8 +31,8 @@ public class AppService {
         quotationService.createQuotation(base, rate, todayCurr, Timestamp.valueOf(LocalDate.now().atStartOfDay()));
         quotationService.createQuotation(base, rate, yesterdayCurr, Timestamp.valueOf(LocalDate.now().minusDays(1).atStartOfDay()));
         if (todayCurr<yesterdayCurr)
-            return giphyService.getGiphy("rich").getUrl();
+            return "rich " + giphyService.getGiphy("rich").getUrl();
         else
-            return giphyService.getGiphy("broke").getUrl();
+            return "broke " + giphyService.getGiphy("broke").getUrl();
     }
 }

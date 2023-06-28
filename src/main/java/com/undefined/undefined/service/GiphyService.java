@@ -27,6 +27,7 @@ public class GiphyService {
 
             Random random = new Random();
             int randomIndex = random.nextInt(50);
+            responseGiphy.getData().get(randomIndex).setTypeUrl(DEFAULT_GIPHY_TYPE);
 
             return responseGiphy.getData().get(randomIndex);
         } catch (Exception e) {
@@ -38,9 +39,10 @@ public class GiphyService {
         try {
             DTOResponseGiphy responseGiphy = clientGiphy.getGiphy(apiKey, giphyType);
 
+
             Random random = new Random();
             int randomIndex = random.nextInt(50);
-
+            responseGiphy.getData().get(randomIndex).setTypeUrl(giphyType);
             return responseGiphy.getData().get(randomIndex);
         } catch (Exception e) {
             log.debug("Catch smth");
