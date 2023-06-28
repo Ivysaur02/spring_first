@@ -1,31 +1,26 @@
 openapi: 3.0.2
 info:
-  title: Abstraction
-  description: Abstraction App
+  title: Летняя Практика
+  description: Сервис для души
   version: '1.0'
 servers:
-  - url: http://localhost:8080/abstraction/api
+  - url: http://localhost:8080
 
 tags:
-  - name: Decoding
-    description: Decoding info
+  - name: QuotationController
+    description: Возвращает гифку
 
 paths:
-  /decode:
-    post:
+  /quotation:
+    get:
       tags:
-        - Decoding
-      summary: Decode file
-      operationId: decodeFile
-      requestBody:
-        content:
-          multipart/form-data:
-            schema: 
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
+        - Quotation
+      summary: Realize Quotation
+      operationId: quotation
       responses:
         200:
           description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
