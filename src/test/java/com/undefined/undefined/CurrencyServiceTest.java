@@ -2,21 +2,19 @@ package com.undefined.undefined;
 
 import com.undefined.undefined.feign.dto.DTOResponseCurrency;
 import com.undefined.undefined.service.CurrencyService;
-import com.undefined.undefined.service.GiphyService;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 
-@SpringBootTest
-public class CurrencyServiceTest extends AbstractTest{
+public class CurrencyServiceTest extends AbstractTest {
 
     @Autowired
     private CurrencyService currencyService;
@@ -24,7 +22,7 @@ public class CurrencyServiceTest extends AbstractTest{
     static DTOResponseCurrency dtoResponseCurrency;
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
         dtoResponseCurrency = new DTOResponseCurrency();
 
         dtoResponseCurrency.setDisclaimer("Usage subject to terms: https://openexchangerates.org/terms");
@@ -39,19 +37,20 @@ public class CurrencyServiceTest extends AbstractTest{
         rates.put("RUB", 85.37501F);
 
 
-
         dtoResponseCurrency.setRates(rates);
+
     }
 
 
     @Test
-    void CheckSameDay(){
+    void CheckSameDay() {
+        Mockito.when(feignClientRequestCurrency.getExchangeRates(anyString(), anyString(), anyString(), anyString())).thenReturn(dtoResponseCurrency);
         DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-27");
         assertEquals(receivedResponse, dtoResponseCurrency);
     }
 
     @Test
-    void CheckNotEqualsDay(){
+    void CheckNotEqualsDay() {
         DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-20");
         assertNotEquals(receivedResponse, dtoResponseCurrency);
     }

@@ -12,8 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-@SpringBootTest
-public class GiphyServiceTest {
+public class GiphyServiceTest extends AbstractTest {
 
 
     @Autowired
@@ -22,7 +21,7 @@ public class GiphyServiceTest {
     static DTOData dtoData;
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
         dtoData = new DTOData();
 
         dtoData.setTypeUrl("rich");
@@ -30,13 +29,13 @@ public class GiphyServiceTest {
     }
 
     @Test
-    void CheckGifSameType(){
+    void CheckGifSameType() {
         DTOData receivedData = giphyService.getGiphy("rich");
         assertEquals(receivedData, dtoData);
     }
 
     @Test
-    void CheckNotEqualsType(){
+    void CheckNotEqualsType() {
         DTOData receivedData = giphyService.getGiphy("broke");
         assertNotEquals(receivedData, dtoData);
     }

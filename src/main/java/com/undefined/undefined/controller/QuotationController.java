@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class QuotationController implements QuotationApi {
     private final AppService appService;
+
     @Override
     public ResponseEntity<String> quotation() {
         return ResponseEntity.ok(appService.getResult());

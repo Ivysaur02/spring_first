@@ -35,6 +35,7 @@ public class GiphyService {
             throw new RuntimeException("Kek");
         }
     }
+
     public DTOData getGiphy(String giphyType) {
         try {
             DTOResponseGiphy responseGiphy = clientGiphy.getGiphy(apiKey, giphyType);

@@ -13,12 +13,13 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-            .components(new Components())
-            .info(info());
+                .components(new Components())
+                .info(info());
     }
+
     private Info info() {
         return new Info()
-            .title("Летняя Практика")
-            .description("Сервис для души");
+                .title("Летняя Практика")
+                .description("Сервис для души");
     }
 }

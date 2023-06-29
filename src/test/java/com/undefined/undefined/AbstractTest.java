@@ -1,14 +1,12 @@
 package com.undefined.undefined;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.undefined.undefined.feign.FeignClientRequestCurrency;
+import com.undefined.undefined.feign.FeignClientRequestGiphy;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 @Testcontainers
 @SpringBootTest
@@ -32,5 +30,11 @@ public abstract class AbstractTest {
 //    public static void beforeAll() {
 //        POSTGRES.start();
 //    }
+
+    @MockBean
+    protected FeignClientRequestCurrency feignClientRequestCurrency;
+
+//    @MockBean
+//    protected FeignClientRequestGiphy feignClientRequestGiphy;
 }
 

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class QuotationService {
     @Autowired
     private QuotationRepository quotationRepository;
+
     public void createQuotation(String base, String rate, Float value, Timestamp date) {
         // Создание нового кортежа
         Quotation quotation = new Quotation();

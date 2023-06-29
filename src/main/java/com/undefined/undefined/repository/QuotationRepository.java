@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface QuotationRepository extends JpaRepository<Quotation, Integer> {
     List<Quotation> findByBase(String base);
+
     @Override
     List<Quotation> findAllById(Iterable<Integer> integers);
 }
