@@ -11,6 +11,7 @@ import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class QuotationService {
     @Autowired
     private QuotationRepository quotationRepository;
 
-    public void createQuotation(String base, String rate, Float value, Timestamp date) {
+    public void createQuotation(String base, String rate, Float value, LocalDateTime date) {
         // Создание нового кортежа
         Quotation quotation = new Quotation();
         quotation.setBase(base);

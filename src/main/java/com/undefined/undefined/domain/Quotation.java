@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -18,5 +20,5 @@ public class Quotation {
     private String rate;
     @Column(columnDefinition = "numeric")
     private Float value;
-    private Timestamp date;
+    private LocalDateTime date;
 }

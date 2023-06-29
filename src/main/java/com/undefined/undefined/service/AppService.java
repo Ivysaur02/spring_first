@@ -29,8 +29,8 @@ public class AppService {
         DTOResponseCurrency yesterdayResponse = currencyService.getExchangeRate(LocalDate.now().minusDays(1).toString());
         Float todayCurr = todayResponse.getRates().get(rate);
         Float yesterdayCurr = yesterdayResponse.getRates().get(rate);
-        quotationService.createQuotation(base, rate, todayCurr, Timestamp.valueOf(LocalDate.now().atStartOfDay()));
-        quotationService.createQuotation(base, rate, yesterdayCurr, Timestamp.valueOf(LocalDate.now().minusDays(1).atStartOfDay()));
+        quotationService.createQuotation(base, rate, todayCurr, LocalDate.now().atStartOfDay());
+        quotationService.createQuotation(base, rate, yesterdayCurr, LocalDate.now().minusDays(1).atStartOfDay());
         if (todayCurr < yesterdayCurr)
             return "rich " + giphyService.getGiphy("rich").getUrl();
         else
