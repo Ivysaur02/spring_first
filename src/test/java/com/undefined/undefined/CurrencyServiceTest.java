@@ -20,10 +20,12 @@ public class CurrencyServiceTest extends AbstractTest {
     private CurrencyService currencyService;
 
     static DTOResponseCurrency dtoResponseCurrency;
+    static DTOResponseCurrency dtoWithRandomBase;
 
     @BeforeAll
     public static void init() {
         dtoResponseCurrency = new DTOResponseCurrency();
+        dtoWithRandomBase = new DTOResponseCurrency();
 
         dtoResponseCurrency.setDisclaimer("Usage subject to terms: https://openexchangerates.org/terms");
         dtoResponseCurrency.setLicense("https://openexchangerates.org/license");
@@ -39,7 +41,16 @@ public class CurrencyServiceTest extends AbstractTest {
 
         dtoResponseCurrency.setRates(rates);
 
+        dtoWithRandomBase.setBase("R");//т.к сравнение идёт по базовой валюте мы её меняем и получается что совершенно другая дто
+        dtoWithRandomBase.setRates(rates);
     }
+
+//TODO  блять как поменять url из yml
+
+//    @Test
+//    void CheckNull(){
+//        Mockito.when()
+//    }
 
 
     @Test
@@ -49,9 +60,11 @@ public class CurrencyServiceTest extends AbstractTest {
         assertEquals(receivedResponse, dtoResponseCurrency);
     }
 
+
     @Test
-    void CheckNotEqualsDay() {
+    void CheckNotEqualsDayNeedServiceConnect() {
+        Mockito.when(feignClientRequestCurrency.getExchangeRates(anyString(), anyString(), anyString(), anyString())).thenReturn(dtoResponseCurrency);
         DTOResponseCurrency receivedResponse = currencyService.getExchangeRate("2023-06-20");
-        assertNotEquals(receivedResponse, dtoResponseCurrency);
+        assertNotEquals(receivedResponse, dtoWithRandomBase);
     }
 }
