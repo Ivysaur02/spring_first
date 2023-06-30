@@ -1,0 +1,23 @@
+image: maven:latest
+
+services:
+  - name: docker:dind
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: "overlay2"
+
+stages:
+  - build_and_test
+  - package
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository
+Build project:
+  stage: build_and_test
+  script:
+    - mvn $MAVEN_OPTS compile
