@@ -10,14 +10,25 @@ variables:
   DOCKER_DRIVER: "overlay2"
 
 stages:
-  - build_and_test
-  - package
-  - deploy
+  - build
+  - test
 
 cache:
   paths:
     - .m2/repository
-Build project:
-  stage: build_and_test
+
+build:
+  stage: build
   script:
-    - mvn $MAVEN_OPTS compile
+    - mvn clean package
+  only:
+    - merge_requests
+    - /^dev/
+
+test:
+  stage: test
+  script:
+    - mvn test
+  only:
+    - merge_requests
+    - /^dev/
